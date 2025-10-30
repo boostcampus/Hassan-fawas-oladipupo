@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Fawaz - Full Stack Developer Portfolio</title>
+    <meta name="description" content="Hassan Fawaz - Product-focused front-end developer & founder based in Lagos, Nigeria. Building projects that connect businesses and users.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            scroll-behavior: smooth;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -50%;
+            left: -50%;
+            animation: pulse 15s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background-image: url('1760442623960.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            animation: rotate 10s linear infinite;
+        }
+        
+        .profile-img-container::after {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .skill-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: #3ab0d9;
+            border-color: #3ab0d9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline-custom {
+            border: 2px solid white;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-outline-custom:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .card-project {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .card-project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .tech-badge {
+            background: var(--light-color);
+            color: var(--dark-color);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 15px;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .contact-info {
+            background: var(--light-color);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid #eee;
+            padding: 20px 25px;
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+        
+        .carousel-control-prev {
+            left: 15px;
+        }
+        
+        .carousel-control-next {
+            right: 15px;
+        }
+        
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .bg-light {
+            background-color: #1e1e1e !important;
+        }
+        
+        body.dark-mode .card, 
+        body.dark-mode .process-step,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .contact-info {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .tech-badge {
+            background-color: #3d3d3d;
+            color: #e0e0e0;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 60px;
+                text-align: center;
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .profile-img-container::before {
+                width: 230px;
+                height: 230px;
+            }
+            
+            .profile-img-container::after {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .section-padding {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .profile-img-container::before {
+                width: 210px;
+                height: 210px;
+            }
+            
+            .profile-img-container::after {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="bi bi-moon"></i>
+    </button>
+
+    <!-- Header / Hero Section -->
+    <header class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    
+                    <h1 class="display-4 fw-bold mb-3">Hassan Fawaz</h1>
+                    <p class="lead mb-4">Product-focused full stack developer & founder — building projects that connect businesses and users.</p>
+                    
+                    <div class="mb-4">
+                        <span class="skill-badge">HTML</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">PHP</span>
+                        <span class="skill-badge">MySQL</span>
+                    </div>
+                    
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="https://github.com/boostcampus" class="btn btn-primary-custom">View Projects</a>
+                        <a href="https://wa.me/2348086556841?text=I%20want%20to%20make%20enquiry%20about%20your%20web%20development%20service" class="btn btn-outline-custom">Contact / Hire Me</a>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/hassan-fawaz-12b20827a?trk=contact-info" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/boostcampus" class="social-icon"><i class="bi bi-github"></i></a>
+                        <a href="https://x.com/hassanfawazdipo?t=d1cUZJuhdLeyW7ZbvfxAsw&s=09" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="https://wa.me/2348086556841?text=I%20want%20to%20make%20enquiry%20about%20your%20web%20development%20service" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center order-lg-2 order-1 mb-4 mb-lg-0">
+                    <div class="profile-img-container">
+                        <div class="profile-img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section-padding bg-light" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="mb-4">I'm a Lagos-based entrepreneur and front-end developer with a passion for creating digital solutions that solve real-world problems. As the founder behind projects like TradeVista and Connect Camp, I specialize in building responsive web applications, marketplaces, and UI-first products that deliver exceptional user experiences.</p>
+                    <p>My approach combines technical expertise with product thinking, ensuring that every project not only functions flawlessly but also meets business objectives and user needs. I believe in clean code, intuitive design, and continuous learning to stay at the forefront of web development.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row text-center">
+                        <div class="col-md-4 col-6 mb-4">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <h3 class="text-primary fw-bold">15+</h3>
+                                <p class="mb-0">Projects Built</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6 mb-4">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <h3 class="text-primary fw-bold">3+</h3>
+                                <p class="mb-0">Years Experience</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mb-4">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <h3 class="text-primary fw-bold">10+</h3>
+                                <p class="mb-0">Tools & Technologies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section-padding" id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card card-project">
+                        <div class="card-body">
+                            <h5 class="card-title">AA Polo Club</h5>
+                            <p class="card-text">Marketplace connecting dedicated polo fans with real polo equipment and clothes</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">PHP</span>
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal1">Details</button>
+                                <a href="https://aapolo.ng" class="btn btn-sm btn-outline-primary">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card card-project">
+                        <div class="card-body">
+                            <h5 class="card-title">Connect Camp</h5>
+                            <p class="card-text">A platform with diffrent business tools for small business owners and enterpreniuer Launched Feb 5, 2025.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal2">Details</button>
+                                <a href="https://conectcamp.netlify.app" class="btn btn-sm btn-outline-primary">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card card-project">
+                        <div class="card-body">
+                            <h5 class="card-title">Campus boost</h5>
+                            <p class="card-text">A platform where students get acess to diffrent educational and business tools at ease</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal3">Details</button>
+                                <a href="https://campusboost.netlify.app" class="btn btn-sm btn-outline-primary">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card card-project">
+                        <div class="card-body">
+                            <h5 class="card-title">Celebrity website</h5>
+                            <p class="card-text"></p>
+                            <div class="mb-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal4">Details</button>
+                                <a href="https://www.harrietsings.com/" class="btn btn-sm btn-outline-primary">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card card-project">
+                        <div class="card-body">
+                            <h5 class="card-title">Alexa Beauties Salon</h5>
+                            <p class="card-text">A unisex beauty salon website</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal5">Details</button>
+                                <a href="https://boostcampus.github.io/Alexa-Beauties-/" class="btn btn-sm btn-outline-primary">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card card-project">
+                        <div class="card-body">
+                            <h5 class="card-title">JK DEESA FOOD ENTERPRISE</h5>
+                            <p class="card-text">Market place where customer get fresh fruit and food items with ease</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">JavaScript</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal6">Details</button>
+                                <a href="https://boostcampus.github.io/Jk/" class="btn btn-sm btn-outline-primary">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Process Section -->
+    <section class="section-padding bg-light" id="process">
+        <div class="container">
+            <h2 class="section-title">My Work Process</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Discuss</h4>
+                        <p>We start with a detailed conversation about your project requirements, goals, and target audience to ensure we're aligned from day one.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Build</h4>
+                        <p>I develop your project using the latest technologies and best practices, with regular updates and opportunities for feedback.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Launch</h4>
+                        <p>After thorough testing and refinement, we deploy your project and provide any necessary training or documentation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <h3 class="mb-4">Services I Offer</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> UI/UX Design</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Landing Pages</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> E-commerce Solutions</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Marketplaces</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Chat Applications</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Single-Page Apps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="mb-3">"Hassan delivered an exceptional product that exceeded our expectations. His attention to detail and problem-solving skills are remarkable."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/60x60/4361ee/ffffff?text=CT" alt="Client" class="client-img me-3">
+                            <div>
+                                <h6 class="mb-0">Ugwuala Alex</h6>
+                                <small class="text-muted">CEO, Alexa Beauty Salon NG</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="mb-3">"Working with Hassan was a game-changer for our business. He transformed our complex requirements into a seamless user experience."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/60x60/3a0ca3/ffffff?text=AA" alt="Client" class="client-img me-3">
+                            <div>
+                                <h6 class="mb-0">Akhere Adesuwa</h6>
+                                <small class="text-muted">CEO, JK DEESA FOOD ENTERPRISE</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="mb-3">"Hassan's technical expertise and product mindset helped us launch our platform ahead of schedule. Highly recommended!"</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/60x60/4cc9f0/ffffff?text=TO" alt="Client" class="client-img me-3">
+                            <div>
+                                <h6 class="mb-0">Hassan Fawas</h6>
+                                <small class="text-muted">Founder, Campus Boost</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding bg-light" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom">Send Message</button>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Contact Information</h4>
+                        <div class="mb-3">
+                            <i class="bi bi-envelope-fill text-primary me-2"></i>
+                            <span>hassanfawazdipo@gmail.com</span>
+                        </div>
+                        <div class="mb-3">
+                            <i class="bi bi-telephone-fill text-primary me-2"></i>
+                            <span>+2348086556841</span>
+                        </div>
+                        <div class="mb-3">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                        <div class="mb-4">
+                            <a href="my new rebrand cv.pdf.PDF" class="btn btn-outline-primary">
+                                <i class="bi bi-download me-2"></i>Download Resume
+                            </a>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/hassan-fawaz-12b20827a?trk=contact-info" class="social-icon text-dark"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://github.com/boostcampus" class="social-icon text-dark"><i class="bi bi-github"></i></a>
+                            <a href="https://x.com/hassanfawazdipo?t=d1cUZJuhdLeyW7ZbvfxAsw&s=09" class="social-icon text-dark"><i class="bi bi-twitter"></i></a>
+                            <a href="https://wa.me/2348086556841?text=I%20want%20to%20make%20enquiry%20about%20your%20web%20development%20service" class="social-icon text-dark"><i class="bi bi-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 Hassan Fawaz. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/hassan-fawaz-12b20827a?trk=contact-info" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/boostcampus" class="text-white me-3"><i class="bi bi-github"></i></a>
+                        <a href="https://x.com/hassanfawazdipo?t=d1cUZJuhdLeyW7ZbvfxAsw&s=09" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="https://wa.me/2348086556841?text=I%20want%20to%20make%20enquiry%20about%20your%20web%20development%20service" class="text-white"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="projectModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectModal1Label">TradeVista</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carousel1" class="carousel slide mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://via.placeholder.com/800x450/4361ee/ffffff?text=TradeVista+Screenshot+1" class="d-block w-100" alt="TradeVista Screenshot">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://via.placeholder.com/800x450/3a0ca3/ffffff?text=TradeVista+Screenshot+2" class="d-block w-100" alt="TradeVista Screenshot">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
+                    <h6>Project Overview</h6>
+                    <p>TradeVista is a comprehensive marketplace platform that connects business owners with potential buyers. The platform includes advanced features like user verification, sponsored posts, and a secure payment system.</p>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Technologies Used</h6>
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">Bootstrap</span>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Project Duration</h6>
+                            <p>4 months</p>
+                        </div>
+                    </div>
+                    
+                    <h6>Key Features</h6>
+                    <ul>
+                        <li>User verification system</li>
+                        <li>Sponsored post functionality</li>
+                        <li>Secure payment integration</li>
+                        <li>Advanced search and filtering</li>
+                        <li>Responsive design for all devices</li>
+                    </ul>
+                    
+                    <div class="d-flex gap-2 mt-4">
+                        <a href="#" class="btn btn-primary">Visit Live Site</a>
+                        <a href="https://github.com/boostcampus" class="btn btn-outline-primary">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('bi-moon');
+                themeIcon.classList.add('bi-sun');
+            } else {
+                themeIcon.classList.remove('bi-sun');
+                themeIcon.classList.add('bi-moon');
+            }
+        });
+        
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Initial check
+        fadeInOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Form Validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                // In a real implementation, you would send the form data to a server
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            }
+        });
+        
+        // WhatsApp Integration
+        const whatsappButtons = document.querySelectorAll('a[href*="whatsapp"]');
+        whatsappButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // In a real implementation, this would open WhatsApp with a pre-filled message
+                const phoneNumber = '+2348086556841'; // Replace with actual number
+                const message = 'Hi Hassan — I\'d like to enquire about your services.';
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                
+                // For demo purposes, we'll just show an alert
+                alert('This would open WhatsApp with a pre-filled message in a real implementation.');
+                // window.open(whatsappURL, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
